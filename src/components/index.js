@@ -1,7 +1,7 @@
 import NavBar from './NavBar/NavBar';
 import Container from './Container/Container';
 import Game from './Game/Game';
-import Contacts from './Contacts/Contacts';
+import Start from './Start/Start';
 import Home from './Home/Home';
 import NotFound from './NotFound/NotFound';
 import Authorization from './Authorization/Authorization';
@@ -12,7 +12,7 @@ export {
     NavBar,
     Container,
     Game,
-    Contacts,
+    Start,
     Home,
     Authorization,
     Registration,

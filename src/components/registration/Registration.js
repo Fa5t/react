@@ -41,7 +41,7 @@ class Registration extends Component {
               name: this.state.login,
               email: this.state.email,
               password: this.state.password,
-              password_confirmations: this.state.passwordConfirm
+              password_confirmation: this.state.passwordConfirm
             })
           });
           if (response.ok) {

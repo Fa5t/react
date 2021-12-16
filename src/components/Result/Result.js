@@ -5,15 +5,19 @@ class Result extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: ''
+            result: ''
         };
+    }
+
+    componentDidMount() {
+        this.setState({ result: JSON.parse(localStorage.getItem('res')) });
     }
 
   render() {
     return (
         <div>
-            <p>Result</p>
+            <p>Last result</p>
+            <div>{this.state.result}</div>
         </div>
     );
   }

@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 class Authorization extends Component {
     constructor(props) {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            auth: false
         };
     }
 
     changeEmail = (e) => {
         this.setState({ email: e.target.value });
-        console.log(this.state);
     }
 
     changePassword = (e) => {
@@ -38,6 +38,8 @@ class Authorization extends Component {
                 password: this.state.password,
                 access_token: json.data.access_token
               }))
+              alert('Успешно авторизованы')
+              this.setState({ auth: true });
           } else {
             if(json.errors === "Unauthorized"){
                 console.log(json.errors)
@@ -55,6 +57,9 @@ class Authorization extends Component {
     }
 
   render() {
+    if(this.state.auth === true) {
+      return ( <Redirect to='/start'/>)
+    }
     return (
         <div>
             <div className="container">
