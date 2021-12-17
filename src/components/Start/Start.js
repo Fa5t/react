@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 class Start extends Component {
     constructor(props) {
@@ -49,19 +49,24 @@ class Start extends Component {
     if(this.state.startGame === true) {
       return ( <Redirect to='/game'/>)
     }
-    return (
-        <div>
-            <p>Выберите сложности</p>
-            <div>
-                <select name="dificulty" defaultValue='1' onChange={this.changeSelect}>
-                    <option disabled='disabled' value>Выберите сложность</option>
-                    <option value='1'>Easy</option>
-                    <option value='2'>Hard</option>
-                </select>
-                <button onClick={this.start.bind(this)}>Start</button>
-            </div>
-        </div>
-    );
+    if(JSON.parse(localStorage.getItem('auth')) === true) {
+      {console.log(JSON.parse(localStorage.getItem('auth')));}
+      return (
+          <div>
+              <p>Выберите сложности</p>
+              <div>
+                  <select name="dificulty" defaultValue='0' onChange={this.changeSelect}>
+                      <option disabled='disabled' value='0'>Выберите сложность</option>
+                      <option value='1'>Easy</option>
+                      <option value='2'>Hard</option>
+                  </select>
+                  <button onClick={this.start.bind(this)}>Start</button>
+              </div>
+          </div>
+      );
+    } else {
+      return ( <Redirect to='/authorization'/>)
+    }
   }
 }
 

@@ -8,10 +8,6 @@ class Container extends Component {
     return (
       <div>
         <Switch>
-          {/* <Route exact path='/' component={Home}/>
-          <Route path='/about' component={About}/>
-          <Route path='/contacts' component={Contacts}/>
-          <Route component={NotFound}/> */}
           <Route path='/authorization' component={Authorization}/>
           <Route path='/registration' component={Registration}/>
           <Route path='/start' component={Start}/>

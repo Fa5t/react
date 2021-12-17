@@ -7,7 +7,8 @@ class Authorization extends Component {
         this.state = {
             email: '',
             password: '',
-            auth: false
+            auth: false,
+            access: false
         };
     }
 
@@ -38,8 +39,9 @@ class Authorization extends Component {
                 password: this.state.password,
                 access_token: json.data.access_token
               }))
-              alert('Успешно авторизованы')
               this.setState({ auth: true });
+              localStorage.setItem('auth', this.state.auth);
+              alert('Успешно авторизованы')             
           } else {
             if(json.errors === "Unauthorized"){
                 console.log(json.errors)

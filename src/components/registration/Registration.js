@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, Switch, Route, Link } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 
 class Registration extends Component {
@@ -68,6 +68,9 @@ class Registration extends Component {
     }
  
     render() {
+      if(this.state.registered === true) {
+        return ( <Redirect to='/authorization'/>)
+      }
       return (
           <div>
               <div className="container">

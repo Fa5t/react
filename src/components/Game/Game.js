@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 class Game extends Component {
     constructor(props) {
@@ -10,7 +10,8 @@ class Game extends Component {
             time: 0,
             options: [],
             dificulty: 0,
-            endtest: false
+            endtest: false,
+            newGame: false
         };
     }
 
@@ -49,7 +50,6 @@ class Game extends Component {
       });
       if (response.ok) {
         let json = await response.json();
-        console.log(json);
         if(json.status) {  
           this.setState({ 
             points: json.data.points,
@@ -59,7 +59,6 @@ class Game extends Component {
           })
         } else {
           localStorage.setItem('res', JSON.stringify(this.state.points));
-          console.log(this.state.points);
           this.setState({ endtest: true});
         }
       } else {
@@ -68,11 +67,21 @@ class Game extends Component {
 
     }
 
+    goBack() {
+      localStorage.removeItem('test');
+      localStorage.removeItem('res');
+      this.setState({ newGame: true });
+    }
+
   render() {
     if(this.state.endtest === true) {
       return ( <Redirect to='/result'/>)
     }
-    return (
+    if(this.state.newGame === true) {
+      return ( <Redirect to='/start'/>)
+    }
+    if(JSON.parse(localStorage.getItem('auth')) === true) {
+      return (
         <div>
             <div>
               <div>SCORE {this.state.points}</div>
@@ -83,11 +92,13 @@ class Game extends Component {
               {this.state.options.map((item, i) => <button value={item} onClick={this.answer.bind(this)}>{item}</button> )}
             </div>
             <div>
-              <button>GO BACK</button>
+              <button className='btn' onClick={this.goBack.bind(this)}>GO BACK</button>
             </div>
         </div>
-          
-    );
+      );
+    } else {
+      return ( <Redirect to='/authorization'/>)
+    } 
   }
 }
 
