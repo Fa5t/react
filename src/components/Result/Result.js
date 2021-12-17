@@ -28,7 +28,7 @@ class Result extends Component {
         <div>
             <p>Last result</p>
             <div>{this.state.result}</div>
-            <button onClick={this.newGame.bind(this)}>New game</button>
+            <button className='btn-start'onClick={this.newGame.bind(this)}>New game</button>
         </div>
     );
   }

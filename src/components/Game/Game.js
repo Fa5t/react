@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
+import './Game.css';
 
 class Game extends Component {
     constructor(props) {
@@ -82,14 +83,14 @@ class Game extends Component {
     }
     if(JSON.parse(localStorage.getItem('auth')) === true) {
       return (
-        <div>
+        <div className='container contaner-game'>
             <div>
               <div>SCORE {this.state.points}</div>
               <div>TIMER {this.state.time}</div>
               <div>{this.state.question} = ?</div>
             </div>
             <div>
-              {this.state.options.map((item, i) => <button value={item} onClick={this.answer.bind(this)}>{item}</button> )}
+              {this.state.options.map((item, i) => <button className="btn btn-answers" value={item} onClick={this.answer.bind(this)}>{item}</button> )}
             </div>
             <div>
               <button className='btn' onClick={this.goBack.bind(this)}>GO BACK</button>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
+import './Start.css';
 
 class Start extends Component {
     constructor(props) {
@@ -54,13 +55,13 @@ class Start extends Component {
       return (
           <div>
               <p>Выберите сложности</p>
-              <div>
+              <div className='container'>
                   <select name="dificulty" defaultValue='0' onChange={this.changeSelect}>
                       <option disabled='disabled' value='0'>Выберите сложность</option>
                       <option value='1'>Easy</option>
                       <option value='2'>Hard</option>
                   </select>
-                  <button onClick={this.start.bind(this)}>Start</button>
+                  <button className="btn btn-start"onClick={this.start.bind(this)}>Start</button>
               </div>
           </div>
       );
