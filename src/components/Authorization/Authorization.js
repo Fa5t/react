@@ -45,7 +45,7 @@ class Authorization extends Component {
               alert('Успешно авторизованы')             
           } else {
             if(json.errors === "Unauthorized"){
-                console.log(json.errors)
+              alert(json.errors)
             }
             if(json.errors.email !== undefined){
               alert(json.errors.email)

@@ -51,16 +51,19 @@ class Game extends Component {
       });
       if (response.ok) {
         let json = await response.json();
-        if(json.status) {  
-          this.setState({ 
+        if(json.status) {
+          if(json.data.question){
+            this.setState({ 
             points: json.data.points,
             question: json.data.question,
             time: json.data.time,
             options: json.data.options,
           })
-        } else {
-          localStorage.setItem('res', JSON.stringify(this.state.points));
-          this.setState({ endtest: true});
+          } else {
+            localStorage.setItem('res', JSON.stringify(this.state.points));
+            localStorage.setItem('results', JSON.stringify(json.data.questions));
+            this.setState({ endtest: true});
+          }
         }
       } else {
         console.log('HTTP error - ' + response.status);

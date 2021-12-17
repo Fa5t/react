@@ -30,12 +30,9 @@ class Start extends Component {
           });
           if (response.ok) {
             let json = await response.json();
-            console.log(json);
             if(json.status) {
                 json.data.type_hard = this.state.dificulty;
                 localStorage.setItem('test', JSON.stringify(json.data))
-                console.log(json.data);
-                console.log(localStorage.getItem('test'));
                 this.setState({ startGame: true});
             } else {
                 console.log(json.error);
